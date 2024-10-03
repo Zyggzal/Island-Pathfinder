@@ -15,7 +15,7 @@ int main(int argc, char **argv)
     }
 
     if(count >= MAX_INT) {
-	mx_printerr("error: sum of bridges lengths is too big");
+	mx_printerr("error: sum of bridges lengths is too big\n");
     }
     else {
         for(int i = 0; i < len - 1; i++) {
@@ -24,9 +24,8 @@ int main(int argc, char **argv)
 	    }
         }
     }
-    free(islands);
-    free(bridges->bridges);
-    free(bridges);
+    del_strarr(&islands);
+    full_del_bridge_array(&bridges);
     return 0;
 }
 

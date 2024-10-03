@@ -40,5 +40,7 @@ void print_and_delete(char** str, int where);
 void err_no_file(char *name);
 void err_file_empty(char *name);
 void err_line_invalid(int num);
+void del_strarr(char*** arr);
+void full_del_bridge_array(t_barr** arr);
 
 #endif

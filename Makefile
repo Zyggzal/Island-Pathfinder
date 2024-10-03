@@ -2,7 +2,7 @@ INC = inc
 OBJ = obj
 SRC = src
 LIBMX = libmx
-CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
+CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic -g
 FLAGS = $(CFLAGS) -I $(INC) -I $(LIBMX)/$(INC)
 NAME = pathfinder
 LIB = libmx.a

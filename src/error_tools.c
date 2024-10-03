@@ -9,19 +9,19 @@ void print_and_delete(char** str, int where) {
 void err_no_file(char *name) {
     write(2, "error: file ", 12);
     write(2, name, mx_strlen(name));
-    write(2, " does not exist", 15);
+    write(2, " does not exist\n", 16);
 }
 
 void err_file_empty(char *name) {
     write(2, "error: file ", 12);
     write(2, name, mx_strlen(name));
-    write(2, " is empty", 9);
+    write(2, " is empty\n", 10);
 }
 
 void err_line_invalid(int num) {
     write(2, "error: line ", 12);
     char* l = mx_itoa(num);
     print_and_delete(&l, 2);
-    write(2, " is not valid", 13);
+    write(2, " is not valid\n", 14);
 }
 

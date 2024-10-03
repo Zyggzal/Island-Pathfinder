@@ -4,7 +4,7 @@ void free_path_array(t_paths** arr) {
     if (!*arr) return;
     if ((*arr)->count > 0) {
         for (int i = 0; i < (*arr)->count; i++) {
-            free_bridge_array((*arr)->paths);
+            free_bridge_array(&((*arr)->paths[i]));
         }
         free((*arr)->paths);
     }

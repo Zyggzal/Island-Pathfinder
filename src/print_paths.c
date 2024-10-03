@@ -30,12 +30,12 @@ void print_paths(char** from, char** to, t_barr* bridges)
             for (int j = 0; j < p.paths[i]->count; j++) {
                 if (j != 0) mx_printstr(" + ");
 		char* c = mx_itoa(p.paths[i]->bridges[j]->length);
-                print_and_delete(&c, 0);
+                print_and_delete(&c, 1);
             }
             mx_printstr(" = ");
         }
 	char* c = mx_itoa(count_distance(p.paths[i]));
-	print_and_delete(&c, 0);
+	print_and_delete(&c, 1);
 	mx_printchar('\n');
 	mx_printstr(BOUNDARY);
         free_bridge_array(&p.paths[i]);

@@ -28,9 +28,17 @@ char **get_island(char **arr, char *island) {
     return NULL;
 }
 
+bool islands_valid(char* str) {
+    int len = mx_strlen(str);
+    for(int i = 0; i < len; i++) {
+	if(!(str[i] >= 65 && str[i] <= 90) && !(str[i] >= 97 && str[i] <= 122) && str[i] != '-')return false; 
+    }
+    return true;
+}
+
 char **read_from_file(int argc, char** argv, int* islands, t_barr** bridges) {
     if(argc != 2) {
-        write(2, "usage: ./pathfinder [filename]", 30);
+        write(2, "usage: ./pathfinder [filename]\n", 31);
         exit(0);
     }
 
@@ -50,7 +58,7 @@ char **read_from_file(int argc, char** argv, int* islands, t_barr** bridges) {
     mx_strdel(&content);
     if(!lines[0] || (*islands = mx_atoi(lines[0])) <= 0) {
         del_strarr(&lines);
-        write(2, "error: line 1 is not valid", 26);
+        write(2, "error: line 1 is not valid\n", 27);
         exit(0);
     }
     char **isles = (char **)malloc(sizeof(char *) * ((*islands) + 1));
@@ -64,16 +72,16 @@ char **read_from_file(int argc, char** argv, int* islands, t_barr** bridges) {
 	    err_line_invalid(i + 1);
 	    del_strarr(&isles);
             del_strarr(&lines);
-            free_bridge_array(bridges);
+            full_del_bridge_array(bridges);
             exit(0);
         }
         char **f = mx_strsplit(lines[i], ',');
-        if(!f || !f[0] || !f[1]) {
+        if(!f || !f[0] || !f[1] || !islands_valid(f[0])) {
 	    err_line_invalid(i + 1);
 	    del_strarr(&isles);
             del_strarr(&lines);
             del_strarr(&f);
-            free_bridge_array(bridges);
+            full_del_bridge_array(bridges);
             exit(0);
         }
         int len = mx_atoi(f[1]);
@@ -84,7 +92,7 @@ char **read_from_file(int argc, char** argv, int* islands, t_barr** bridges) {
 	    del_strarr(&isles);
             del_strarr(&lines);
             del_strarr(&inames);
-            free_bridge_array(bridges);
+            full_del_bridge_array(bridges);
             exit(0);
         }
 	if(!island_exists(isles, inames[0])) {
@@ -127,10 +135,10 @@ char **read_from_file(int argc, char** argv, int* islands, t_barr** bridges) {
         	*bridges = tmp;
 	}
 	else {
-            write(2, "error: duplicate bridges", 24);
+            write(2, "error: duplicate bridges\n", 25);
             del_strarr(&isles);
 	    del_strarr(&lines);
-            free_bridge_array(bridges);
+            full_del_bridge_array(bridges);
 	    exit(0);
 	}
 
@@ -138,9 +146,9 @@ char **read_from_file(int argc, char** argv, int* islands, t_barr** bridges) {
     del_strarr(&lines);
     
     if(icounter != *islands) {
-        write(2, "error: invalid number of islands", 32);
+        write(2, "error: invalid number of islands\n", 33);
         del_strarr(&isles);
-        free_bridge_array(bridges);
+        full_del_bridge_array(bridges);
         exit(0);
     }
 

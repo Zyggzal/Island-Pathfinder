@@ -67,3 +67,13 @@ void free_bridge_array(t_barr** arr) {
     *arr = NULL;
 }
 
+void full_del_bridge_array(t_barr** arr) {
+	if(!*arr)return;
+	for(int i = 0; i < (*arr)->count; i++) {
+		free((*arr)->bridges[i]);
+	}
+	free((*arr)->bridges);
+	free(*arr);
+	*arr = NULL;
+}
+
