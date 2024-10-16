@@ -26,3 +26,13 @@ void append_path(t_paths* arr, t_barr* i) {
     arr->count++;
 }
 
+bool contains_path(t_paths* p, t_barr* b) {
+    for(int i = 0; i < p->count; i++) {
+	int count = 0;
+	for(int j = 0; j < b->count; j++) {
+	    if(contains(p->paths[i], b->bridges[j])) count++;
+	}
+	if(count == b->count) return true;
+    }
+    return false;
+}

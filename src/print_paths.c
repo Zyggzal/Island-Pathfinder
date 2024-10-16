@@ -6,6 +6,7 @@ void print_paths(char** from, char** to, t_barr* bridges)
     t_paths p;
     p.paths = NULL;
     p.count = 0;
+    
     shortest_path(from, to, NULL, bridges, NULL, &p);
 
     for (int i = 0; i < p.count; i++) {

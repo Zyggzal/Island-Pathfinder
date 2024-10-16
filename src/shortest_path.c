@@ -25,12 +25,14 @@ void shortest_path(char** from, char** to, t_bridge* on, t_barr* bridges, t_barr
             return;
         }
     }
-
-    for(int i = 0; i < bridges->count; i++) {
-        if (!contains(path, bridges->bridges[i])) {
-            stop = get_next_stop(bridges->bridges[i], from);
-            if (stop != NULL) {
-                shortest_path(stop, to, bridges->bridges[i], bridges, append_bridge(path, bridges->bridges[i]), paths);
+    int c = paths->count == 0 ? 0 : count_distance(paths->paths[0]);
+    if(!(c != 0 && c < count_distance(path))) {
+	for(int i = 0; i < bridges->count; i++) {
+            if (!contains(path, bridges->bridges[i])) {
+                stop = get_next_stop(bridges->bridges[i], from);
+                if (stop != NULL) {
+                    shortest_path(stop, to, bridges->bridges[i], bridges, append_bridge(path, bridges->bridges[i]), paths);
+                }
             }
         }
     }

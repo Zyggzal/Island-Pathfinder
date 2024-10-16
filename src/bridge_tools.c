@@ -77,3 +77,11 @@ void full_del_bridge_array(t_barr** arr) {
 	*arr = NULL;
 }
 
+t_bridge* get_bridge(char** from, char** to, t_barr* bridges) {
+	for(int i = 0; i < bridges->count; i++) {
+		if((bridges->bridges[i]->islandA == from && bridges->bridges[i]->islandB == to) || (bridges->bridges[i]->islandB == from && bridges->bridges[i]->islandA == to)) {
+			return bridges->bridges[i];
+		}
+	}
+	return NULL;
+}

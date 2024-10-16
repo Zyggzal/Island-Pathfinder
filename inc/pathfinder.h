@@ -8,6 +8,8 @@
 #include <stdbool.h>
 #include <fcntl.h>
 
+#include <time.h>
+
 typedef struct s_bridge {
     char** islandA;
     char** islandB;
@@ -42,5 +44,7 @@ void err_file_empty(char *name);
 void err_line_invalid(int num);
 void del_strarr(char*** arr);
 void full_del_bridge_array(t_barr** arr);
+t_bridge* get_bridge(char** from, char** to, t_barr* bridges);
+bool contains_path(t_paths* p, t_barr* b);
 
 #endif
